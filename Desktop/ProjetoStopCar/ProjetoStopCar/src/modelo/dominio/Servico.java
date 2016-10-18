@@ -1,17 +1,24 @@
 package modelo.dominio;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+@SuppressWarnings("serial")
 @Entity
 @Table (name = "tabServico")
-public class Servico {
+public class Servico implements CodigoSequencial, Serializable{
 	
-	
+	@Id
+	@GeneratedValue (generator = "COD_SERVICO", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator (name = "COD_SERVICO", sequenceName = "SEQ_SERVICO", allocationSize = 1)
 	private int codServico;
 	
 	@Column (length = 30, nullable = false)
@@ -61,6 +68,18 @@ public class Servico {
 
 	public void setDataHoraSaida(Date dataHoraSaida) {
 		this.dataHoraSaida = dataHoraSaida;
+	}
+
+	@Override
+	public Long getCod() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setCod(Long cod) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

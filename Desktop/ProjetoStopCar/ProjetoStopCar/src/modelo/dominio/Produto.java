@@ -1,15 +1,23 @@
 package modelo.dominio;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+@SuppressWarnings("serial")
 @Entity
 @Table (name = "tabProdutos")
-public class Produto {
+public class Produto implements CodigoSequencial, Serializable{
 	
-	
+	@Id
+	@GeneratedValue (generator = "COD_PRODUTO", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator (name = "COD_PRODUTO", sequenceName = "SEQ_PRODUTO", allocationSize = 1)
 	private Long codProduto;
 	
 	@Column (length = 50, nullable = false)
@@ -24,9 +32,9 @@ public class Produto {
 	@Column (length = 5, nullable = false)
 	private int quantDoProdutoEmEstoque;
 	
-//	public Produto(){
-//		
-//	}
+	public Produto(){
+		
+	}
 
 	public Long getCodProduto() {
 		return codProduto;
@@ -66,5 +74,17 @@ public class Produto {
 
 	public void setQuantDoProdutoEmEstoque(int quantDoProdutoEmEstoque) {
 		this.quantDoProdutoEmEstoque = quantDoProdutoEmEstoque;
+	}
+
+	@Override
+	public Long getCod() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setCod(Long cod) {
+		// TODO Auto-generated method stub
+		
 	}
 }

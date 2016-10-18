@@ -1,15 +1,23 @@
 package modelo.dominio;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+@SuppressWarnings("serial")
 @Entity
 @Table (name = "tabVeiculo")
-public class Veiculo {
+public class Veiculo implements CodigoSequencial, Serializable{
 	
-	
+	@Id
+	@GeneratedValue (generator = "COD_VEICULO", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator (name = "COD_VEICULO", sequenceName = "SEQ_VEICULO", allocationSize = 1)
 	private int codVeiculo;
 	
 	@Column (length = 7, nullable = false, unique = true)
@@ -58,6 +66,18 @@ public class Veiculo {
 
 	public void setCor(String cor) {
 		this.cor = cor;
+	}
+
+	@Override
+	public Long getCod() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setCod(Long cod) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

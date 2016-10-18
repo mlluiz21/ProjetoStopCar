@@ -1,16 +1,24 @@
 package modelo.dominio;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+@SuppressWarnings("serial")
 @Entity
 @Table (name = "tabBoleto")
-public class Boleto {
+public class Boleto implements CodigoSequencial, Serializable {
 	
-	
-	private int numBoleto;
+	@Id
+	@GeneratedValue(generator = "COD_BOLETO", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator (name = "COD_BOLETO", sequenceName = "SEQ_BOLETO", allocationSize = 1)
+	private Long codBoleto;
 	
 	@Column (length = 50, nullable = false)
 	private String nomeCliente;
@@ -18,18 +26,18 @@ public class Boleto {
 	@Column (length = 6, nullable = false)
 	private float valor;
 	
-	public Boleto (int numBoleto, String nomeCliente, float valor){
-		this.numBoleto = numBoleto;
+	public Boleto (Long codBoleto, String nomeCliente, float valor){
+		this.codBoleto = codBoleto;
 		this.nomeCliente = nomeCliente;
 		this.valor = valor;
 	}
 
-	public int getNumBoleto() {
-		return numBoleto;
+	public Long getCodBoleto() {
+		return codBoleto;
 	}
 
-	public void setNumBoleto(int numBoleto) {
-		this.numBoleto = numBoleto;
+	public void setCodBoleto(Long codBoleto) {
+		this.codBoleto = codBoleto;
 	}
 
 	public String getNomeCliente() {
@@ -46,6 +54,18 @@ public class Boleto {
 
 	public void setValor(float valor) {
 		this.valor = valor;
+	}
+
+	@Override
+	public Long getCod() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setCod(Long cod) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

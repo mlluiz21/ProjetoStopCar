@@ -1,13 +1,24 @@
 package modelo.dominio;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "tabFornecedores")
-public class Fornecedor {
+public class Fornecedor implements CodigoSequencial, Serializable{
+	
+	@Id
+	@GeneratedValue (generator = "COD_FORNECEDOR", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator (name = "COD_FORNECEDOR", sequenceName = "SEQ_FORNECEDOR", allocationSize = 1)
+	private Long codFornecedor;
 	
 	@Column (length = 14, nullable = false, unique = true)
 	private int cnpj;
@@ -30,6 +41,14 @@ public class Fornecedor {
 		this.razaoSocial = razaoSocial;
 		this.telefone = telefone;
 		this.cidade = cidade;
+	}
+		
+	public Long getCodFornecedor() {
+		return codFornecedor;
+	}
+
+	public void setCodFornecedor(Long codFornecedor) {
+		this.codFornecedor = codFornecedor;
 	}
 
 	public int getCnpj() {
@@ -62,5 +81,17 @@ public class Fornecedor {
 
 	public void setCidade(String cidade) {
 		this.cidade = cidade;
+	}
+
+	@Override
+	public Long getCod() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setCod(Long cod) {
+		// TODO Auto-generated method stub
+		
 	}	
 }

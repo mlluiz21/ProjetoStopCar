@@ -1,17 +1,24 @@
 package modelo.dominio;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+@SuppressWarnings("serial")
 @Entity
 @Table (name = "tabFornece")
-public class Fornece {
+public class Fornece implements CodigoSequencial, Serializable{
 	
-	
+	@Id
+	@GeneratedValue (generator = "COD_COMPRA", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator (name = "COD_COMPRA", sequenceName = "SEQ_COMPRA", allocationSize = 1)
 	private int codCompra;
 	
 	@Column (nullable = false)
@@ -48,6 +55,18 @@ public class Fornece {
 
 	public void setValorCompra(float valorCompra) {
 		this.valorCompra = valorCompra;
+	}
+
+	@Override
+	public Long getCod() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setCod(Long cod) {
+		// TODO Auto-generated method stub
+		
 	}
         
 }

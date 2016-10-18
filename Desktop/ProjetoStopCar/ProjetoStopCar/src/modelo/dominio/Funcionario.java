@@ -2,12 +2,20 @@ package modelo.dominio;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table (name = "tabFuncionarios")
 public class Funcionario {
+	
+	@Id
+	@GeneratedValue (generator = "COD_FUNCIONARIO", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator (name = "COD_FUNCIONARIO", sequenceName = "SEQ_FUNCIONARIO", allocationSize = 1)
+	private Long codFuncionario;
 	
 	@Column (length = 11, nullable = false, unique = true)
 	private int cpf;
