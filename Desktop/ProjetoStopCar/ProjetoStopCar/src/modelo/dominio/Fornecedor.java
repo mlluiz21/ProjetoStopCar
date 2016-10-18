@@ -1,17 +1,24 @@
 package modelo.dominio;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tab_fornecedores")
+@Table(name = "tabFornecedores")
 public class Fornecedor {
 	
-	@Id
+	@Column (length = 14, nullable = false, unique = true)
 	private int cnpj;
+	
+	@Column (length = 70, nullable = false)
 	private String razaoSocial;
+	
+	@Column (length = 14, nullable = false)
 	private String telefone;
+	
+	@Column (length = 40, nullable = false)
 	private String cidade;
 	
 	public Fornecedor(){
@@ -19,7 +26,6 @@ public class Fornecedor {
 	}
 	
 	public Fornecedor (int cnpj, String razaoSocial, String telefone, String cidade){
-		super();
 		this.cnpj = cnpj;
 		this.razaoSocial = razaoSocial;
 		this.telefone = telefone;
@@ -56,8 +62,5 @@ public class Fornecedor {
 
 	public void setCidade(String cidade) {
 		this.cidade = cidade;
-	}
-	
-	
-
+	}	
 }

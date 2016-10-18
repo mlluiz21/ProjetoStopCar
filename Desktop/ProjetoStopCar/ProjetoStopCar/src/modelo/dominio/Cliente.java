@@ -1,17 +1,24 @@
 package modelo.dominio;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tab_clientes")
+@Table(name = "tabClientes")
 public class Cliente {
 	
-	@Id
+	@Column (length = 50, nullable = false)
 	private String nome;
+	
+	@Column (length = 11, nullable = false, unique = true)
 	private int cpf;
+	
+	@Column (length = 11, nullable = false)
 	private String telefone;
+	
+	@Column (length = 7, nullable = false)
 	private String placaVeiculo;
 	
 	public Cliente() {
@@ -19,7 +26,6 @@ public class Cliente {
 	}
 	
 	public Cliente (String nome, int cpf, String telefone, String placaVeiculo){
-		super();
 		this.nome = nome;
 		this.cpf = cpf;
 		this.telefone = telefone;
@@ -49,9 +55,7 @@ public class Cliente {
 	}
 	public void setPlacaVeiculo(String placaVeiculo) {
 		this.placaVeiculo = placaVeiculo;
-	}
-
-	
+	}	
 }
 
 	
