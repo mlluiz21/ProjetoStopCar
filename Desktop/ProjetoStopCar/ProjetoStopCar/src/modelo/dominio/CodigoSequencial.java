@@ -1,5 +1,6 @@
 package modelo.dominio;
 
+
 public interface CodigoSequencial {
 	
 	public Long getCod();
