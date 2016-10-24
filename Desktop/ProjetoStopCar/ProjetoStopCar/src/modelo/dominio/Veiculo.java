@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -28,6 +29,12 @@ public class Veiculo implements CodigoSequencial, Serializable{
 	
 	@Column (length = 30, nullable = false)
 	private String cor;
+	
+	@OneToOne
+	private Cliente cliente;
+	
+	@OneToOne
+	private Funcionario funcionario;
 	
 	public Veiculo(int codVeiculo, String placa, String modelo, String cor) {
 		this.codVeiculo = codVeiculo;
@@ -66,6 +73,22 @@ public class Veiculo implements CodigoSequencial, Serializable{
 
 	public void setCor(String cor) {
 		this.cor = cor;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	public Funcionario getFuncionario() {
+		return funcionario;
+	}
+
+	public void setFuncionario(Funcionario funcionario) {
+		this.funcionario = funcionario;
 	}
 
 	@Override

@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -25,6 +27,10 @@ public class Boleto implements CodigoSequencial, Serializable {
 	
 	@Column (length = 6, nullable = false)
 	private float valor;
+	
+	@OneToOne
+	@JoinColumn(nullable = false)
+	private Servico servico;
 	
 	public Boleto (Long codBoleto, String nomeCliente, float valor){
 		this.codBoleto = codBoleto;
@@ -54,6 +60,14 @@ public class Boleto implements CodigoSequencial, Serializable {
 
 	public void setValor(float valor) {
 		this.valor = valor;
+	}
+	
+	public Servico getServico() {
+		return servico;
+	}
+
+	public void setServico(Servico servico) {
+		this.servico = servico;
 	}
 
 	@Override

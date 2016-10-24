@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -29,6 +30,9 @@ public class Servico implements CodigoSequencial, Serializable{
 	
 	@Column (nullable = false)
 	private Date dataHoraSaida;
+	
+	@ManyToOne
+	private Veiculo veiculo;
 	
 	public Servico (int codServico, String tipoServico, Date dataHoraEntrada, Date dataHoraSaida){
 		this.codServico = codServico;
@@ -68,6 +72,14 @@ public class Servico implements CodigoSequencial, Serializable{
 
 	public void setDataHoraSaida(Date dataHoraSaida) {
 		this.dataHoraSaida = dataHoraSaida;
+	}
+
+	public Veiculo getVeiculo() {
+		return veiculo;
+	}
+
+	public void setVeiculo(Veiculo veiculo) {
+		this.veiculo = veiculo;
 	}
 
 	@Override

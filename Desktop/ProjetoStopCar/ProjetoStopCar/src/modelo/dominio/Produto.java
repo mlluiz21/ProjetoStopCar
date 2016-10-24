@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -31,6 +32,12 @@ public class Produto implements CodigoSequencial, Serializable{
 	
 	@Column (length = 5, nullable = false)
 	private int quantDoProdutoEmEstoque;
+	
+	@ManyToOne
+	private Fornecedor fornecedor;
+	
+	@ManyToOne
+	private Servico servico;
 	
 	public Produto(){
 		
@@ -74,6 +81,22 @@ public class Produto implements CodigoSequencial, Serializable{
 
 	public void setQuantDoProdutoEmEstoque(int quantDoProdutoEmEstoque) {
 		this.quantDoProdutoEmEstoque = quantDoProdutoEmEstoque;
+	}
+
+	public Fornecedor getFornecedor() {
+		return fornecedor;
+	}
+
+	public void setFornecedor(Fornecedor fornecedor) {
+		this.fornecedor = fornecedor;
+	}
+
+	public Servico getServico() {
+		return servico;
+	}
+
+	public void setServico(Servico servico) {
+		this.servico = servico;
 	}
 
 	@Override
