@@ -2,6 +2,7 @@ package modelo.dominio;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,7 +31,7 @@ public class Veiculo implements CodigoSequencial, Serializable{
 	@Column (length = 30, nullable = false)
 	private String cor;
 	
-	@OneToOne
+	@OneToOne (cascade = CascadeType.ALL, optional = true, orphanRemoval = true)
 	private Cliente cliente;
 	
 	@OneToOne

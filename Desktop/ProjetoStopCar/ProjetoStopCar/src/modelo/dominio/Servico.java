@@ -3,6 +3,7 @@ package modelo.dominio;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,7 +32,7 @@ public class Servico implements CodigoSequencial, Serializable{
 	@Column (nullable = false)
 	private Date dataHoraSaida;
 	
-	@ManyToOne
+	@ManyToOne (cascade = CascadeType.ALL)
 	private Veiculo veiculo;
 	
 	public Servico (int codServico, String tipoServico, Date dataHoraEntrada, Date dataHoraSaida){

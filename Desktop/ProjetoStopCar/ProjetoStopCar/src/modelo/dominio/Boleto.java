@@ -2,13 +2,14 @@ package modelo.dominio;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -28,7 +29,7 @@ public class Boleto implements CodigoSequencial, Serializable {
 	@Column (length = 6, nullable = false)
 	private float valor;
 	
-	@OneToOne
+	@ManyToOne (cascade = CascadeType.ALL)
 	@JoinColumn(nullable = false)
 	private Servico servico;
 	

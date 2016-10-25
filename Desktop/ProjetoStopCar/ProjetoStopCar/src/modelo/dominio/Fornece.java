@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -26,6 +27,12 @@ public class Fornece implements CodigoSequencial, Serializable{
 	
 	@Column (length = 6, nullable = false)
 	private float valorCompra;
+	
+	@ManyToOne
+	private Fornecedor fornecedor;
+	
+	@ManyToOne
+	private Produto produto;
 	
     public Fornece (int codCompra, Date dataCompra, float valorCompra){
     	this.codCompra = codCompra;
@@ -56,7 +63,7 @@ public class Fornece implements CodigoSequencial, Serializable{
 	public void setValorCompra(float valorCompra) {
 		this.valorCompra = valorCompra;
 	}
-
+	
 	@Override
 	public Long getCod() {
 		// TODO Auto-generated method stub

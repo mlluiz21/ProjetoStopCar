@@ -2,6 +2,7 @@ package modelo.dominio;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,7 +34,7 @@ public class Produto implements CodigoSequencial, Serializable{
 	@Column (length = 5, nullable = false)
 	private int quantDoProdutoEmEstoque;
 	
-	@ManyToOne
+	@ManyToOne (cascade = CascadeType.ALL)
 	private Fornecedor fornecedor;
 	
 	@ManyToOne
