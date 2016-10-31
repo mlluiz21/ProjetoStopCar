@@ -1,15 +1,19 @@
 package modelo.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 import modelo.dominio.Cliente;
 
 public class ClienteDAO {
 	
-private EntityManager manager = null;
-	
+	private EntityManager manager = null;
+			
 	public ClienteDAO(){
 		
 		super();
@@ -18,7 +22,15 @@ private EntityManager manager = null;
 		
 		this.manager = criandoMinhaFabrica.createEntityManager();
 	}
-	
+			
+	public EntityManager getManager() {
+		return manager;
+	}
+
+	public void setManager(EntityManager manager) {
+		this.manager = manager;
+	}
+
 	public void incluirCliente(Cliente cliente){
 		
 		//INICIAR TRANSAÇÃO PARA PERSISTÊNCIA NO BANCO.
@@ -64,10 +76,69 @@ private EntityManager manager = null;
 		this.manager.getTransaction().commit();
 	}
 	
-	public void consultarCliente(Cliente cliente){
+	
+	@SuppressWarnings("unchecked")
+	public List<Cliente> consultarCliente(){
 		
-		this.manager.getTransaction().begin();
+		List<Cliente> resultadoBusca;
+		
+		Query consulta = this.getManager().createQuery("from tabCliente c order by codCliente and nome");
+		
+		try
+		{
+			resultadoBusca = (List<Cliente>) consulta.getResultList();
+		}
+		
+		catch (NoResultException e)
+		{
+			resultadoBusca = null;
+		}
+		
+		return resultadoBusca;
 				
 	}
+		
+	public Cliente lerPorCodigo(Long codCliente){
+		
+		Cliente resultadoBusca;
+		
+		Query consulta = this.getManager().createQuery("from tabCliente c where c.codCliente = :codCliente");
+		consulta.setParameter("codCliente", codCliente);
+		
+		try
+		{
+			resultadoBusca = (Cliente) consulta.getSingleResult();
+		}
+		
+		catch (NoResultException e)
+		{
+//			POR UMA MENSAGEM AQUI, NENHUM CLIENTE ENCONTRADO COM ESSE CÓDIGO.
+			resultadoBusca = null;
+		}
+		
+		return resultadoBusca;
+	}
+	
+	public Cliente lerPorCpf(int cpf){
+		
+		Cliente resultadoBusca;
+		
+		Query consulta = this.getManager().createQuery("from tabCliente c where c.cpf = :cpf");
+		consulta.setParameter("cpf", cpf);
+		
+		try
+		{
+			resultadoBusca = (Cliente) consulta.getSingleResult();
+		}
+		
+		catch (NoResultException e)
+		{
+//			POR UMA MENSAGEM AQUI, NENHUM CLIENTE ENCONTRADO COM ESSE CÓDIGO.
+			resultadoBusca = null;
+		}
+		
+		return resultadoBusca;
+	}
+
 
 }
