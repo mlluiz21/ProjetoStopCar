@@ -76,7 +76,6 @@ public class ClienteDAO {
 		this.manager.getTransaction().commit();
 	}
 	
-	
 	@SuppressWarnings("unchecked")
 	public List<Cliente> consultarCliente(){
 		
@@ -139,6 +138,26 @@ public class ClienteDAO {
 		
 		return resultadoBusca;
 	}
-
+	
+	public Cliente lerPorNome(String nome){
+		
+		Cliente resultadoBusca;
+		
+		Query consulta = this.getManager().createQuery("from tabCliente c where c.nome = :nome");
+		consulta.setParameter("nome", nome);
+		
+		try
+		{
+			resultadoBusca = (Cliente) consulta.getSingleResult();
+		}
+		
+		catch (NoResultException e)
+		{
+//			POR UMA MENSAGEM AQUI, NENHUM CLIENTE ENCONTRADO COM ESSE CÓDIGO.
+			resultadoBusca = null;
+		}
+		
+		return resultadoBusca;
+	}
 
 }

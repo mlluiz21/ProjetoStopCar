@@ -1,9 +1,15 @@
 package modelo.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
+import modelo.dominio.Cliente;
+import modelo.dominio.Fornecedor;
 import modelo.dominio.Fornecedor;
 
 public class FornecedorDAO {
@@ -18,7 +24,15 @@ private EntityManager manager = null;
 		
 		this.manager = criandoMinhaFabrica.createEntityManager();
 	}
-	
+			
+	public EntityManager getManager() {
+		return manager;
+	}
+
+	public void setManager(EntityManager manager) {
+		this.manager = manager;
+	}
+
 	public void incluirFornecedor(Fornecedor fornecedor){
 		
 		//INICIAR TRANSAÇÃO PARA PERSISTÊNCIA NO BANCO.
@@ -69,5 +83,88 @@ private EntityManager manager = null;
 		this.manager.getTransaction().begin();
 				
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Fornecedor> consultarFornecedor(){
+		
+		List<Fornecedor> resultadoBusca;
+		
+		Query consulta = this.getManager().createQuery("from tabFornecedor f order by codFornecedor and nome");
+		
+		try
+		{
+			resultadoBusca = (List<Fornecedor>) consulta.getResultList();
+		}
+		
+		catch (NoResultException e)
+		{
+			resultadoBusca = null;
+		}
+		
+		return resultadoBusca;
+				
+	}
+		
+	public Fornecedor lerPorCodigo(Long codFornecedor){
+		
+		Fornecedor resultadoBusca;
+		
+		Query consulta = this.getManager().createQuery("from tabFornecedor f where f.codFornecedor = :codFornecedor");
+		consulta.setParameter("codFornecedor", codFornecedor);
+		
+		try
+		{
+			resultadoBusca = (Fornecedor) consulta.getSingleResult();
+		}
+		
+		catch (NoResultException e)
+		{
+//			POR UMA MENSAGEM AQUI, NENHUM CLIENTE ENCONTRADO COM ESSE CÓDIGO.
+			resultadoBusca = null;
+		}
+		
+		return resultadoBusca;
+	}
+	
+	public Fornecedor lerPorCnpj(int cnpj){
+		
+		Fornecedor resultadoBusca;
+		
+		Query consulta = this.getManager().createQuery("from tabFornecedor f where f.cnpj = :cnpj");
+		consulta.setParameter("cnpj", cnpj);
+		
+		try
+		{
+			resultadoBusca = (Fornecedor) consulta.getSingleResult();
+		}
+		
+		catch (NoResultException e)
+		{
+//			POR UMA MENSAGEM AQUI, NENHUM CLIENTE ENCONTRADO COM ESSE CÓDIGO.
+			resultadoBusca = null;
+		}
+		
+		return resultadoBusca;
+	}
 
+	public Fornecedor lerPorRazaoSocial(String razaoSocial){
+		
+		Fornecedor resultadoBusca;
+		
+		Query consulta = this.getManager().createQuery("from tabFornecedor f where f.razaoSocial = :razaoSocial");
+		consulta.setParameter("razaoSocial", razaoSocial);
+		
+		try
+		{
+			resultadoBusca = (Fornecedor) consulta.getSingleResult();
+		}
+		
+		catch (NoResultException e)
+		{
+//			POR UMA MENSAGEM AQUI.
+			resultadoBusca = null;
+		}
+		
+		return resultadoBusca;
+	}
 }

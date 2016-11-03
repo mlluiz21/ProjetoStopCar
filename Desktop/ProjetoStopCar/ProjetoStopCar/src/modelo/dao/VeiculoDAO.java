@@ -19,6 +19,14 @@ public class VeiculoDAO {
 		this.manager = criandoMinhaFabrica.createEntityManager();
 	}
 	
+	public EntityManager getManager() {
+		return manager;
+	}
+
+	public void setManager(EntityManager manager) {
+		this.manager = manager;
+	}
+
 	public void incluirVeiculo(Veiculo veiculo){
 		
 		//INICIAR TRANSAÇÃO PARA PERSISTÊNCIA NO BANCO.

@@ -19,6 +19,14 @@ private EntityManager manager = null;
 		this.manager = criandoMinhaFabrica.createEntityManager();
 	}
 	
+	public EntityManager getManager() {
+		return manager;
+	}
+
+	public void setManager(EntityManager manager) {
+		this.manager = manager;
+	}
+
 	public void incluirServico(Servico servico){
 		
 		//INICIAR TRANSAÇÃO PARA PERSISTÊNCIA NO BANCO.
