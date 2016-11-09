@@ -8,8 +8,6 @@ import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-import modelo.dominio.Cliente;
-import modelo.dominio.Fornecedor;
 import modelo.dominio.Fornecedor;
 
 public class FornecedorDAO {
