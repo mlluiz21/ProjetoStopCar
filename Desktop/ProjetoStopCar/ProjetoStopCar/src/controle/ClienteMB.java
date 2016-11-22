@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
+import modelo.dao.ClienteDAO;
 import modelo.dominio.Cliente;
 
 @ManagedBean(name="clienteMB")
@@ -15,6 +16,10 @@ public class ClienteMB {
 	
 	//INSTANCIA DA CLASSE CLIENTE.
 	private Cliente cliente = new Cliente();
+	
+	//INSTANCIA DA CLASSE CLIENTEDAO.
+	@SuppressWarnings("unused")
+	private ClienteDAO clientedao = new ClienteDAO();
 	
 	//LISTA DE TODOS OS OBJETOS DA CLASSE CLIENTE.
 	private ArrayList<Cliente> ListaCliente = new ArrayList<Cliente>();
@@ -43,9 +48,11 @@ public class ClienteMB {
 	}
 	
 	//ABRIR EDIÇÃO DE CADASTRO DE CLIENTE.
-	public String acaoAbrir() {
+	public String acaoAbrirAlteracao() {
 					
-		return "cliente.jsf";
+		this.setCliente(new Cliente());
+		
+		return "clienteEditar.jsf";
 	}
 
 	//SALVAR CADASTRO DE CLIENTE. 

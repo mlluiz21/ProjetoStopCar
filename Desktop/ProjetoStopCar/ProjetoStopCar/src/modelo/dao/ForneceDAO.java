@@ -1,8 +1,6 @@
 package modelo.dao;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 public class ForneceDAO {
 	
@@ -10,11 +8,7 @@ public class ForneceDAO {
 	
 	public ForneceDAO(){
 		
-		super();
-		
-		EntityManagerFactory criandoMinhaFabrica = Persistence.createEntityManagerFactory("ProjetoBancoStopCar");
-		
-		this.manager = criandoMinhaFabrica.createEntityManager();
+		this.manager = JPAUtil.getEntityManager();
 	}
 
 	public EntityManager getManager() {
