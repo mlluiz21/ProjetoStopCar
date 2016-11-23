@@ -71,11 +71,11 @@ public class ClienteDAO {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Cliente> consultarCliente(){
+	public List<Cliente> consultarTodosClientes(){
 		
 		List<Cliente> resultadoBusca;
 		
-		Query consulta = this.getManager().createQuery("from tabCliente c order by codCliente and nome");
+		Query consulta = this.getManager().createQuery("from tabCliente c order by nome");
 		
 		try
 		{

@@ -1,6 +1,7 @@
 package controle;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -22,7 +23,7 @@ public class ClienteMB {
 	private ClienteDAO clientedao = new ClienteDAO();
 	
 	//LISTA DE TODOS OS OBJETOS DA CLASSE CLIENTE.
-	private ArrayList<Cliente> ListaCliente = new ArrayList<Cliente>();
+	private List<Cliente> ListaCliente = null;
 	
 		
 	public Cliente getCliente() {
@@ -33,7 +34,7 @@ public class ClienteMB {
 		this.cliente = cliente;
 	}
 	
-	public ArrayList<Cliente> getListaCliente() {
+	public List<Cliente> getListaCliente() {
 		return ListaCliente;
 	}
 
