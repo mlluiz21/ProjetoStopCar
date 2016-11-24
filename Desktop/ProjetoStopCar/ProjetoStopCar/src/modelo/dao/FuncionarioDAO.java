@@ -1,7 +1,9 @@
 package modelo.dao;
 
 import javax.persistence.EntityManager;
-
+import javax.persistence.NoResultException;
+import javax.persistence.Query;
+import controle.Util.JPAUtil;
 import modelo.dominio.Funcionario;
 
 public class FuncionarioDAO {
@@ -70,6 +72,25 @@ private EntityManager manager = null;
 		
 		this.manager.getTransaction().begin();
 				
+	}
+
+	public Funcionario lerPorLogin(String login)
+	{
+		Funcionario resultado;
+
+		Query consulta = this.getManager().createQuery("from Usuario u where u.login = :login");
+		consulta.setParameter("login", login);
+
+		try
+		{
+			resultado = (Funcionario) consulta.getSingleResult();
+		}
+		catch (NoResultException e)
+		{
+			resultado = null;
+		}
+
+		return resultado;
 	}
 
 }

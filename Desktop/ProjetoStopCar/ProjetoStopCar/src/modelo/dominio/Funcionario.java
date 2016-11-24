@@ -15,7 +15,7 @@ public class Funcionario {
 	@Id
 	@GeneratedValue (generator = "COD_FUNCIONARIO", strategy = GenerationType.SEQUENCE)
 	@SequenceGenerator (name = "COD_FUNCIONARIO", sequenceName = "SEQ_FUNCIONARIO", allocationSize = 1)
-	private Long codFuncionario;
+	private Long id;
 	
 	@Column (length = 11, nullable = false, unique = true)
 	private int cpf;
@@ -32,13 +32,23 @@ public class Funcionario {
 	@Column (length = 25, nullable = false)
 	private String senha;
 		
-	public Funcionario(int cpf, String nome, String telefone, String login, String senha) {
+	public Funcionario(String nome, String telefone, String login, int cpf, String senha) {
+		super();
 		this.cpf = cpf;
 		this.nome = nome;
 		this.telefone = telefone;
 		this.login = login;
 		this.senha = senha;
 		
+	}
+	
+	public Funcionario(){
+		
+		super();
+	}
+
+	public Funcionario(Object object, String string, Object object2) {
+		// TODO Auto-generated constructor stub
 	}
 
 	public int getCpf() {
@@ -81,10 +91,49 @@ public class Funcionario {
 		this.senha = senha;
 	}
 
-	public boolean isSenhaCorreta(String senhaDigitada){
+	public boolean SenhaCorreta(String senhaDigitada){
+		
 		if (this.senha.equals(senhaDigitada))
 			return true;
+		else
 		
 		return false;
 	}
+	
+	@Override
+	public int hashCode()
+	{
+		if (this.id == null)
+			return 0;
+
+		return this.id.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj)
+	{
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Funcionario other = (Funcionario) obj;
+		if (id == null)
+		{
+			if (other.id != null)
+				return false;
+		}
+		else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString()
+	{
+		return this.login;
+	}
+
 }
+

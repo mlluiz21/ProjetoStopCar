@@ -1,32 +1,38 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:p="http://primefaces.com.tr/ui"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title><ui:insert name="titulo">Título</ui:insert></title>
+	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+</h:head>
+
+<h:body>
+<h:form>
+	<p:panelGrid columns="2">
+
+		<h:panelGroup>
+			<h:outputText value="Funcionário: " />
+			<h:outputText value="#{loginMB.funcionario.login} " />
+			<p:commandLink rendered="#{not empty loginMB.funcionario.login}" action="#{loginMB.acaoLogout}">Sair</p:commandLink>
+		</h:panelGroup>
+	</p:panelGrid>
+
+	<ui:insert name="cabecalho"></ui:insert>
+	<p:messages></p:messages>
+	<ui:insert name="conteudo"></ui:insert>
+	<ui:insert name="rodape"></ui:insert>
 	
-	<head>
-		<title>Cabeçalho</title>
-	</head>
-
-	<body>
-		 <h:body>
-        <h:form id="barraDeFerramentas">
-            <p:toolbar>
-                <p:toolbarGroup align="left">
-                    <p:menuButton value="Menu 1">
-                        <p:menuitem value="Item de Menu 1" action="pagina1" ajax="false"/>
-                        <p:menuitem value="Item de Menu 2" action="pagina2" ajax="false"/>
-                    </p:menuButton>
-                    <p:commandButton value="Menu 2" action="pagina3" ajax="false"/>
-                </p:toolbarGroup>
-            </p:toolbar>
-        </h:form>
-        <div><ui:insert name="Conteudo"> Aqui vai o conteudo </ui:insert></div>
-    </h:body>
-		
-	</body>
-
+</h:form>
+</h:body>
 </html>
+
+
+
+
+
+
+
