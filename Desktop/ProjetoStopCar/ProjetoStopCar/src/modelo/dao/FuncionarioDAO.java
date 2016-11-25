@@ -1,10 +1,13 @@
 package modelo.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
-import controle.Util.JPAUtil;
+
 import modelo.dominio.Funcionario;
+import controle.Util.JPAUtil;
 
 public class FuncionarioDAO {
 	
@@ -91,6 +94,27 @@ private EntityManager manager = null;
 		}
 
 		return resultado;
+	}
+	
+		@SuppressWarnings("unchecked")
+		public List<Funcionario> consultarFuncionario(){
+		
+		List<Funcionario> resultadoBusca;
+		
+		Query consulta = this.getManager().createQuery("from tabFuncionario f order by codFornecedor and nome");
+		
+		try
+		{
+			resultadoBusca = (List<Funcionario>) consulta.getResultList();
+		}
+		
+		catch (NoResultException e)
+		{
+			resultadoBusca = null;
+		}
+		
+		return resultadoBusca;
+				
 	}
 
 }

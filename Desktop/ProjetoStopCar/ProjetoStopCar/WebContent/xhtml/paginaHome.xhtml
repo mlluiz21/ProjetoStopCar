@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="_modelo.xhtml">
+
+	<ui:define name="titulo">Menu de Cadastro</ui:define>
+
+	<ui:define name="conteudo">
+		<h:form>
+			<p:menu style="width: 525px">
+				<p:submenu label="Tela de Cadastros">
+					
+					<p:menuitem value="Cadastro de Funcionários"
+						action="#{clienteMB.acaoListar}" ajax="false"
+						icon="ui-icon ui-icon-note" />
+					<p:menuitem value="Cadastro de Fornecedores"
+						action="#{fornecedorMB.acaoListar}" ajax="false"
+						icon="ui-icon ui-icon-note" />
+					<p:menuitem value="Cadastro de Clientes"
+						action="#{clienteMB.acaoListar}" ajax="false"
+						icon="ui-icon ui-icon-note" />
+					<p:menuitem value="Cadastro de Veículos"
+						action="#{fornecedorMB.acaoListar}" ajax="false"
+						icon="ui-icon ui-icon-note" />
+					<p:menuitem value="Cadastro de Serviços"
+						action="#{clienteMB.acaoListar}" ajax="false"
+						icon="ui-icon ui-icon-note" />
+					<p:menuitem value="Cadastro de Produtos"
+						action="#{fornecedorMB.acaoListar}" ajax="false"
+						icon="ui-icon ui-icon-note" />
+					
+					<p:menuitem value="Fechar o Sistema" action="#{loginMB.acaoLogout}"
+						ajax="false" icon="ui-icon ui-icon-close" />
+
+				</p:submenu>
+			</p:menu>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+</html>

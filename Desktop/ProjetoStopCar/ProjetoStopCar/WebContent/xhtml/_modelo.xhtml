@@ -8,25 +8,41 @@
 <h:head>
 	<title><ui:insert name="titulo">Título</ui:insert></title>
 	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+	<link rel="stylesheet" type="text/css"
+		href="../css/formaDosEstilos.css" />
+	<script type="text/javascript" src="../js/prfaces.js" />
 </h:head>
 
 <h:body>
-<h:form>
-	<p:panelGrid columns="2">
 
-		<h:panelGroup>
-			<h:outputText value="Funcionário: " />
-			<h:outputText value="#{loginMB.funcionario.login} " />
-			<p:commandLink rendered="#{not empty loginMB.funcionario.login}" action="#{loginMB.acaoLogout}">Sair</p:commandLink>
-		</h:panelGroup>
-	</p:panelGrid>
+	<div id="pagina" align="center">
+		<p:panel style="width: 810px; padding: 3px; text-align: center">
 
-	<ui:insert name="cabecalho"></ui:insert>
-	<p:messages></p:messages>
-	<ui:insert name="conteudo"></ui:insert>
-	<ui:insert name="rodape"></ui:insert>
-	
-</h:form>
+			<div id="cabecalho" align="center">StopCar Estacionamento
+				<ui:insert name="cabecalho" />
+
+				<h:form>
+					<p:panelGrid columns="2">
+
+						<h:panelGroup>
+							<h:outputText value="#{loginMB.funcionario.login} " />
+							<p:commandLink rendered="#{not empty loginMB.funcionario.login}"
+								action="#{loginMB.acaoLogout}">Sair</p:commandLink>
+						</h:panelGroup>
+					</p:panelGrid>
+
+					<ui:insert name="cabecalho"></ui:insert>
+					<p:messages></p:messages>
+					<div id="conteudo" align="center">
+						<ui:insert name="conteudo" />
+					</div>
+					<ui:insert name="rodape"></ui:insert>
+
+				</h:form>
+
+			</div>
+		</p:panel>
+	</div>
 </h:body>
 </html>
 

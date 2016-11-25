@@ -13,7 +13,7 @@
 
 	<ui:define name="conteudo">
 		<h:form id="form">
-			<p:panel header="Entre com seu login e senha" style="width: 400px">
+			<p:panel header="Entre com seu login e senha" style="width: 525px">
 				<h:panelGrid columns="2">
 
 					<h:outputLabel value="Login:" for="login"></h:outputLabel>
@@ -38,6 +38,11 @@
 					</f:facet>
 
 				</h:panelGrid>
+				
+				<f:facet name="footer">
+				<h:outputText value="StopCar Estacionamento &copy; Todos os direitos reservados."></h:outputText>
+				<ui:insert name="rodape" />
+			</f:facet>
 			</p:panel>
 		</h:form>
 	</ui:define>
