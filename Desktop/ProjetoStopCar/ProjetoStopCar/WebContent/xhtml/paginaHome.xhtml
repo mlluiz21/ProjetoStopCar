@@ -12,29 +12,59 @@
 	<ui:define name="titulo">Menu de Cadastro</ui:define>
 
 	<ui:define name="conteudo">
+
 		<h:form>
 			<p:menu style="width: 525px">
 				<p:submenu label="Tela de Cadastros">
-					
+
 					<p:menuitem value="Cadastro de Funcionários"
-						action="#{clienteMB.acaoListar}" ajax="false"
+						action="#{funcionarioMB.acaoListar}" ajax="false"
 						icon="ui-icon ui-icon-note" />
+
 					<p:menuitem value="Cadastro de Fornecedores"
 						action="#{fornecedorMB.acaoListar}" ajax="false"
 						icon="ui-icon ui-icon-note" />
+
 					<p:menuitem value="Cadastro de Clientes"
-						action="#{clienteMB.acaoListar}" ajax="false"
+						action="#{clienteMB.novoCliente}" ajax="false"
 						icon="ui-icon ui-icon-note" />
+					
 					<p:menuitem value="Cadastro de Veículos"
 						action="#{fornecedorMB.acaoListar}" ajax="false"
 						icon="ui-icon ui-icon-note" />
+
 					<p:menuitem value="Cadastro de Serviços"
-						action="#{clienteMB.acaoListar}" ajax="false"
-						icon="ui-icon ui-icon-note" />
-					<p:menuitem value="Cadastro de Produtos"
-						action="#{fornecedorMB.acaoListar}" ajax="false"
+						action="#{servicoMB.acaoListar}" ajax="false"
 						icon="ui-icon ui-icon-note" />
 					
+					<p:menuitem value="Cadastro de Produtos"
+						action="#{produtoMB.acaoListar}" ajax="false"
+						icon="ui-icon ui-icon-note" />
+
+					<p:menuitem value="Lista de Funcionários"
+						action="#{funcionarioMB.acaoListar}" ajax="false"
+						icon="ui-icon ui-icon-note" />
+
+					<p:menuitem value="Lista de Fornecedores"
+						action="#{fornecedorMB.acaoListar}" ajax="false"
+						icon="ui-icon ui-icon-note" />
+						
+						<p:menuitem value="Lista de Clientes"
+						action="#{clienteMB.acaoListar}" ajax="false"
+						icon="ui-icon ui-icon-note" />
+						
+						<p:menuitem value="Lista de Veículos"
+						action="#{veiculoMB.acaoListar}" ajax="false"
+						icon="ui-icon ui-icon-note" />
+						
+						<p:menuitem value="Lista de Serviços"
+						action="#{servicoMB.acaoListar}" ajax="false"
+						icon="ui-icon ui-icon-note" />
+
+					<p:menuitem value="Lista de Produtos"
+						action="#{produtoMB.acaoListar}" ajax="false"
+						icon="ui-icon ui-icon-note" />
+
 					<p:menuitem value="Fechar o Sistema" action="#{loginMB.acaoLogout}"
 						ajax="false" icon="ui-icon ui-icon-close" />
 

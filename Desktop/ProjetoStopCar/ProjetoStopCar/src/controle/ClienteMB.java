@@ -53,7 +53,7 @@ public class ClienteMB {
 					
 		this.setCliente(new Cliente());
 		
-		return "clienteEditar.jsf";
+		return "clienteEditar";
 	}
 
 	//SALVAR CADASTRO DE CLIENTE. 
@@ -65,13 +65,15 @@ public class ClienteMB {
 	//CANCELAR AÇÃO DE CADASTRO
 	public String novoCliente()
 	{
-		return "cadastroCliente.jsf";
+		this.setCliente(new Cliente());
+		
+		return "clienteEditar";
 	}
 
 	//CANCELAR AÇÃO DE CADASTRO
 	public String acaoCancelar()
 	{
-		return "cliente.jsf";
+		return "paginaHome";
 	}
 
 	//EXCLUIR CLIENTE
