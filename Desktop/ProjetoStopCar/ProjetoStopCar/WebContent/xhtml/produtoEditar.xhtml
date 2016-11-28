@@ -8,27 +8,27 @@
 
 <ui:composition template="_modelo.xhtml">
 
-	<ui:define name="titulo">Cadastro de Fornecedores</ui:define>
+	<ui:define name="titulo">Cadastro de Produtos</ui:define>
 
 	<ui:define name="conteudo">
 		<h:form>
-			<p:panel header="Cadastro de Fornecedores" style="width: 450px">
+			<p:panel header="Cadastro de Produtos" style="width: 450px">
 				<p:panelGrid columns="2">
 					<p:outputLabel for="cnpj" value="CNPJ:"></p:outputLabel>
-					<p:inputText id="cnpj" value="#{ fornecedoresMB.fornecedores.cnpj }"></p:inputText>
+					<p:inputText id="cnpj" value="#{ produtosMB.produtos.cnpj }"></p:inputText>
 
 					<p:outputLabel for="razaoSocial" value="Razão Social:"></p:outputLabel>
-					<p:inputText id="razaoSocial" value="#{ fornecedoresMB.fornecedores.razaoSocial }"></p:inputText>
+					<p:inputText id="razaoSocial" value="#{ produtosMB.produtos.razaoSocial }"></p:inputText>
 
 					<p:outputLabel for="cidade" value="Cidade:"></p:outputLabel>
 					<p:inputText id="cidade"
-						value="#{ fornecedoresMB.fornecedores.cidade }"></p:inputText>
+						value="#{ produtosMB.produtos.cidade }"></p:inputText>
 
 					<p:outputLabel for="telefone" value="Telefone:"></p:outputLabel>
-					<p:inputText id="telefone" value="#{ fornecedoresMB.fornecedores.telefone }"></p:inputText>
+					<p:inputText id="telefone" value="#{ produtosMB.produtos.telefone }"></p:inputText>
 
 					<p:commandButton value="Enviar"
-						action="#{ fornecedoresMB.salvarCliente }"></p:commandButton>
+						action="#{ produtosMB.salvarCliente }"></p:commandButton>
 				</p:panelGrid>
 			</p:panel>
 		</h:form>
