@@ -18,29 +18,27 @@
 	<div id="pagina" align="center">
 		<p:panel style="width: 810px; padding: 3px; text-align: center">
 
-			<div id="cabecalho" align="center">StopCar Estacionamento
-				<ui:insert name="cabecalho" />
+			<div id="cabecalho" align="center">	StopCar Estacionamento </div>
+				
 
 				<h:form>
 					<p:panelGrid columns="2">
-
-						<h:panelGroup>
-							<h:outputText value="#{loginMB.funcionario.login} " />
+							<h:outputText value="Usuario: #{loginMB.funcionario.login} " />
 							<p:commandLink rendered="#{not empty loginMB.funcionario.login}"
-								action="#{loginMB.acaoLogout}">Sair</p:commandLink>
-						</h:panelGroup>
+								action="#{loginMB.acaoLogout}" value="Sair"></p:commandLink>
+						
 					</p:panelGrid>
 
-					<ui:insert name="cabecalho"></ui:insert>
-					<p:messages></p:messages>
+					<ui:insert name="cabecalho" />
+					<p:messages />
 					<div id="conteudo" align="center">
 						<ui:insert name="conteudo" />
 					</div>
-					<ui:insert name="rodape"></ui:insert>
+					<ui:insert name="rodape" />
 
 				</h:form>
 
-			</div>
+			
 		</p:panel>
 	</div>
 </h:body>

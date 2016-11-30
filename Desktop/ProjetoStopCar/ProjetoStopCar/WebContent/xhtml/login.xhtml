@@ -12,17 +12,16 @@
 	<ui:define name="titulo">Autenticação</ui:define>
 
 	<ui:define name="conteudo">
-		<h:form id="form">
 			<p:panel header="Entre com seu login e senha" style="width: 525px">
 				<h:panelGrid columns="2">
 
-					<h:outputLabel value="Login:" for="login"></h:outputLabel>
+					<h:outputLabel value="Login:" for="login" />
 					<p:inputText id="login" value="#{loginMB.login}" required="true"
-						requiredMessage="O Campo Login é obrigatório."></p:inputText>
+						requiredMessage="O Campo Login é obrigatório." />
 
-					<h:outputLabel value="Senha:" for="senha"></h:outputLabel>
+					<h:outputLabel value="Senha:" for="senha" />
 					<p:password feedback="false" id="senha" value="#{loginMB.senha}"
-						required="true" requiredMessage="O Campo Senha é obrigatório."></p:password>
+						required="true" requiredMessage="O Campo Senha é obrigatório." ></p:password>
 
 					<f:facet name="footer">
 						<h:panelGroup layout="block" style="text-align: center">
@@ -39,12 +38,11 @@
 
 				</h:panelGrid>
 				
-				<f:facet name="footer">
-				<h:outputText value="StopCar Estacionamento &copy; Todos os direitos reservados."></h:outputText>
-				<ui:insert name="rodape" />
-			</f:facet>
 			</p:panel>
-		</h:form>
+	</ui:define>
+
+	<ui:define name="rodape">
+			<h:outputText value="StopCar Estacionamento &copy; Todos os direitos reservados."></h:outputText>
 	</ui:define>
 
 </ui:composition>
