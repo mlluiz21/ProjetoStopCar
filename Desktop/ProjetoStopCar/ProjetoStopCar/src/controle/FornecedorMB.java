@@ -1,10 +1,11 @@
 package controle;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
+import controle.Util.JSFUtil;
 import modelo.dao.FornecedorDAO;
 import modelo.dominio.Fornecedor;
 
@@ -16,7 +17,7 @@ public class FornecedorMB {
 	Fornecedor fornecedor = new Fornecedor();
 	FornecedorDAO fornecedordao = new FornecedorDAO();
 	
-	private ArrayList<Fornecedor> ListaFornecedores = new ArrayList<Fornecedor>();
+	private List<Fornecedor> ListaFornecedores = null;
 	
 	public Fornecedor getFornecedor() {
 		return fornecedor;
@@ -27,27 +28,32 @@ public class FornecedorMB {
 		this.fornecedor = fornecedor;
 	}
 	
-	public ArrayList<Fornecedor> getListaFornecedor() {
+	public List<Fornecedor> getListaFornecedor() {
+		
+		if(this.ListaFornecedores == null){
+			this.ListaFornecedores = this.fornecedordao.lerTodos();
+		}
 		return ListaFornecedores;
 	}
 
-	public void setListaFornecedor(ArrayList<Fornecedor> listaFornecedor) {
+	public void setListaFornecedor(List<Fornecedor> listaFornecedor) {
 		this.ListaFornecedores = listaFornecedor;
 	}
 	
-	//ACESSAR P핯INA COM A LISTA DE TODOS OS CLIENTES.
+	
+	//ACESSAR P핯INA COM A LISTA DE TODOS OS FORNECEDORES.
 	public String acaoListar() {
 		
 		return "listarFornecedor.jsf";
 	}
 	
-	//ABRIR EDI플O DE CADASTRO DE CLIENTE.
+	//ABRIR EDI플O DE CADASTRO DE FORNECEDOR.
 	public String acaoAbrir() {
 					
 		return "fornecedor.jsf";
 	}
 
-	//SALVAR CADASTRO DE CLIENTE. 
+	//SALVAR CADASTRO DE FORNECEDOR ********************************. 
 	public String salvarFornecedor() {
 		
 		if ((this.getFornecedor().getCod() != null) && (this.getFornecedor().getCod().longValue() == 0))
@@ -58,9 +64,9 @@ public class FornecedorMB {
 		this.setFornecedor(new Fornecedor());
 		
 		return "paginaHome.jsf";
-	}
+	} //**********************************************************
 	
-	//CANCELAR A플O DE CADASTRO
+	
 	public String novoFornecedor()
 	{
 		this.setFornecedor(new Fornecedor());
@@ -74,10 +80,18 @@ public class FornecedorMB {
 		return "paginaHome.jsf";
 	}
 
-	//EXCLUIR CLIENTE
+	//EXCLUIR FORNECEDOR **********************************************
 	public String excluirFornecedor()
 	{
-		return "fornecedorEditar.jsf";
-	}
+		long codFornecedor = JSFUtil.getParametroLong("codFornecedor");
+		Fornecedor fornecedorBanco = this.fornecedordao.lerPorCodigo(codFornecedor);
+		this.fornecedordao.excluir(fornecedorBanco);
+
+		this.setFornecedor(new Fornecedor());
+		this.fornecedor = null;
+
+		return "paginaHome.jsf";
+		
+	} //*************************************************************
 	
 }
