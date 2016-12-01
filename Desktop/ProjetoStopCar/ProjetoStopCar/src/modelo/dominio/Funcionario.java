@@ -1,5 +1,7 @@
 package modelo.dominio;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,13 +10,14 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+@SuppressWarnings("serial")
 @Entity
 @Table (name = "tabFuncionarios")
-public class Funcionario {
+public class Funcionario  implements CodigoSequencial, Serializable{
 	
 	@Id
-	@GeneratedValue (generator = "COD_FUNCIONARIO", strategy = GenerationType.SEQUENCE)
-	@SequenceGenerator (name = "COD_FUNCIONARIO", sequenceName = "SEQ_FUNCIONARIO", allocationSize = 1)
+	@GeneratedValue (generator = "ID_FUNCIONARIO", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator (name = "ID_FUNCIONARIO", sequenceName = "SEQ_FUNCIONARIO", allocationSize = 1)
 	private Long id;
 	
 	@Column (length = 11, nullable = false, unique = true)
@@ -33,7 +36,6 @@ public class Funcionario {
 	private String senha;
 		
 	public Funcionario(String nome, String telefone, String login, int cpf, String senha) {
-		super();
 		this.cpf = cpf;
 		this.nome = nome;
 		this.telefone = telefone;
@@ -49,6 +51,16 @@ public class Funcionario {
 
 	public Funcionario(Object object, String string, Object object2) {
 		// TODO Auto-generated constructor stub
+	}
+	
+	
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public int getCpf() {
@@ -133,6 +145,18 @@ public class Funcionario {
 	public String toString()
 	{
 		return this.login;
+	}
+
+	@Override
+	public Long getCod() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setCod(Long cod) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

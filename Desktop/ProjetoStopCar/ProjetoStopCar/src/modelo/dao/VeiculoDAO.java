@@ -2,9 +2,11 @@ package modelo.dao;
 
 import javax.persistence.EntityManager;
 
+import controle.Util.JPAUtil;
+import controle.Util.JpaDAO;
 import modelo.dominio.Veiculo;
 
-public class VeiculoDAO {
+public class VeiculoDAO extends JpaDAO<Veiculo>{
 	
 	private EntityManager manager = null;
 	

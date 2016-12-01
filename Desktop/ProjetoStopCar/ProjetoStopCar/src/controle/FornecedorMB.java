@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
+import modelo.dao.FornecedorDAO;
 import modelo.dominio.Fornecedor;
 
 @ManagedBean(name="fornecedorMB")
@@ -12,7 +13,9 @@ import modelo.dominio.Fornecedor;
 public class FornecedorMB {
 	
 	
-	private Fornecedor fornecedor = new Fornecedor();
+	Fornecedor fornecedor = new Fornecedor();
+	FornecedorDAO fornecedordao = new FornecedorDAO();
+	
 	private ArrayList<Fornecedor> ListaFornecedores = new ArrayList<Fornecedor>();
 	
 	public Fornecedor getFornecedor() {
@@ -45,27 +48,36 @@ public class FornecedorMB {
 	}
 
 	//SALVAR CADASTRO DE CLIENTE. 
-	public void salvarFornecedor(Fornecedor fornecedor) {
-		ListaFornecedores.add(fornecedor);
-		fornecedor = new Fornecedor();
+	public String salvarFornecedor() {
+		
+		if ((this.getFornecedor().getCod() != null) && (this.getFornecedor().getCod().longValue() == 0))
+			this.getFornecedor().setCod(null);
+		
+		this.fornecedordao.salvar(this.getFornecedor());
+		this.fornecedor = null;
+		this.setFornecedor(new Fornecedor());
+		
+		return "paginaHome.jsf";
 	}
 	
 	//CANCELAR AÇÃO DE CADASTRO
 	public String novoFornecedor()
 	{
-		return "cadastroFornecedor.jsf";
+		this.setFornecedor(new Fornecedor());
+		
+		return "fornecedorEditar.jsf";
 	}
 
 	//CANCELAR AÇÃO DE CADASTRO
 	public String acaoCancelar()
 	{
-		return "fornecedor.jsf";
+		return "paginaHome.jsf";
 	}
 
 	//EXCLUIR CLIENTE
 	public String excluirFornecedor()
 	{
-		return "fornecedor.jsf";
+		return "fornecedorEditar.jsf";
 	}
 	
 }

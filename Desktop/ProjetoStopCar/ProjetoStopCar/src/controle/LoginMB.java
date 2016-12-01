@@ -85,7 +85,7 @@ public class LoginMB implements Serializable
 			this.setFuncionario(funcionarioDoBanco);
 			this.autenticado = true;
 
-			return "home";
+			return "paginaHome";
 		}
 		else
 		{

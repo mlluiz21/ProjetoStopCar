@@ -6,6 +6,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
+import controle.Util.JSFUtil;
 import modelo.dao.ClienteDAO;
 import modelo.dominio.Cliente;
 
@@ -19,7 +20,6 @@ public class ClienteMB {
 	private Cliente cliente = new Cliente();
 	
 	//INSTANCIA DA CLASSE CLIENTEDAO.
-	@SuppressWarnings("unused")
 	private ClienteDAO clientedao = new ClienteDAO();
 	
 	//LISTA DE TODOS OS OBJETOS DA CLASSE CLIENTE.
@@ -53,13 +53,25 @@ public class ClienteMB {
 					
 		this.setCliente(new Cliente());
 		
-		return "clienteEditar";
+		return "clienteEditar.jsf";
 	}
 
 	//SALVAR CADASTRO DE CLIENTE. 
-	public void salvarCliente(Cliente cliente) {
-		ListaCliente.add(cliente);
-		cliente = new Cliente();
+	public String salvarCliente() {
+
+			if ((this.getCliente().getCodCliente() != null)
+					&& (this.getCliente().getCodCliente().longValue() == 0))
+				this.getCliente().setCodCliente(null);
+
+			this.clientedao.incluirCliente(this.getCliente());
+			// limpa a lista
+			this.cliente = null;
+			
+			// limpar o objeto da página
+			this.setCliente(new Cliente());
+			
+			return this.acaoListar();
+
 	}
 	
 	//CANCELAR AÇÃO DE CADASTRO
@@ -67,19 +79,28 @@ public class ClienteMB {
 	{
 		this.setCliente(new Cliente());
 		
-		return "clienteEditar";
+		return "clienteEditar.jsf";
 	}
 
 	//CANCELAR AÇÃO DE CADASTRO
 	public String acaoCancelar()
 	{
-		return "paginaHome";
+		this.setCliente(new Cliente());
+		
+		return "paginaHome.jsf";
 	}
 
 	//EXCLUIR CLIENTE
 	public String excluirCliente()
 	{
-		return "cliente.jsf";
+		int cpf = JSFUtil.getParametroInteger("cpf");
+		Cliente clienteBanco = this.clientedao.lerPorCpf(cpf);
+		clientedao.excluirCliente(clienteBanco);
+
+		this.setCliente(new Cliente());
+		this.cliente = null;
+		
+		return "paginaHome.jsf";
 	}
 	
 }

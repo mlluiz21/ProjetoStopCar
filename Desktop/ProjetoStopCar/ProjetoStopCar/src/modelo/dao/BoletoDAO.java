@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
+import controle.Util.JPAUtil;
 import modelo.dominio.Boleto;
 
 public class BoletoDAO {

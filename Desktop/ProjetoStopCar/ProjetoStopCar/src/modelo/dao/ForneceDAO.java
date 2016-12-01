@@ -2,6 +2,8 @@ package modelo.dao;
 
 import javax.persistence.EntityManager;
 
+import controle.Util.JPAUtil;
+
 public class ForneceDAO {
 	
 	private EntityManager manager = null;

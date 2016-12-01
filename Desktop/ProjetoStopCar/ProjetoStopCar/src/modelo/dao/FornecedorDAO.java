@@ -6,9 +6,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
+import controle.Util.JPAUtil;
+import controle.Util.JpaDAO;
 import modelo.dominio.Fornecedor;
 
-public class FornecedorDAO {
+public class FornecedorDAO extends JpaDAO<Fornecedor>{
 	
 private EntityManager manager = null;
 	
@@ -81,7 +83,7 @@ private EntityManager manager = null;
 		
 		List<Fornecedor> resultadoBusca;
 		
-		Query consulta = this.getManager().createQuery("from tabFornecedor f order by codFornecedor and nome");
+		Query consulta = this.getManager().createQuery("from tabFornecedor f order by razaoSocial");
 		
 		try
 		{

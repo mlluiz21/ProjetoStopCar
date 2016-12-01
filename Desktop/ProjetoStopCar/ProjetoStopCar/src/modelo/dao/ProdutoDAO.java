@@ -6,9 +6,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
+import controle.Util.JPAUtil;
+import controle.Util.JpaDAO;
 import modelo.dominio.Produto;
 
-public class ProdutoDAO {
+public class ProdutoDAO extends JpaDAO<Produto> {
 	
 private EntityManager manager = null;
 	

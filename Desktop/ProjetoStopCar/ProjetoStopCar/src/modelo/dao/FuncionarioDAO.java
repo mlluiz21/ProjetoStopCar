@@ -8,8 +8,9 @@ import javax.persistence.Query;
 
 import modelo.dominio.Funcionario;
 import controle.Util.JPAUtil;
+import controle.Util.JpaDAO;
 
-public class FuncionarioDAO {
+public class FuncionarioDAO extends JpaDAO<Funcionario>{
 	
 private EntityManager manager = null;
 	
@@ -101,7 +102,7 @@ private EntityManager manager = null;
 		
 		List<Funcionario> resultadoBusca;
 		
-		Query consulta = this.getManager().createQuery("from tabFuncionario f order by codFornecedor and nome");
+		Query consulta = this.getManager().createQuery("from tabFuncionario f order by nome");
 		
 		try
 		{

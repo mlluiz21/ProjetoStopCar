@@ -15,20 +15,24 @@
 			<p:panel header="Cadastro de Fornecedores" style="width: 450px">
 				<p:panelGrid columns="2">
 					<p:outputLabel for="cnpj" value="CNPJ:"></p:outputLabel>
-					<p:inputText id="cnpj" value="#{ fornecedoresMB.fornecedores.cnpj }"></p:inputText>
+					<p:inputText id="cnpj" value="#{ fornecedorMB.fornecedor.cnpj }"></p:inputText>
 
 					<p:outputLabel for="razaoSocial" value="Razão Social:"></p:outputLabel>
-					<p:inputText id="razaoSocial" value="#{ fornecedoresMB.fornecedores.razaoSocial }"></p:inputText>
+					<p:inputText id="razaoSocial"
+						value="#{ fornecedorMB.fornecedor.razaoSocial }"></p:inputText>
 
 					<p:outputLabel for="cidade" value="Cidade:"></p:outputLabel>
 					<p:inputText id="cidade"
-						value="#{ fornecedoresMB.fornecedores.cidade }"></p:inputText>
+						value="#{ fornecedorMB.fornecedor.cidade }"></p:inputText>
 
 					<p:outputLabel for="telefone" value="Telefone:"></p:outputLabel>
-					<p:inputText id="telefone" value="#{ fornecedoresMB.fornecedores.telefone }"></p:inputText>
+					<p:inputText id="telefone"
+						value="#{ fornecedorMB.fornecedor.telefone }"></p:inputText>
 
 					<p:commandButton value="Enviar"
-						action="#{ fornecedoresMB.salvarCliente }"></p:commandButton>
+						action="#{ fornecedorMB.salvarFornecedor }"></p:commandButton>
+					<p:commandButton value="Cancelar"
+						action="#{ fornecedorMB.acaoCancelar }"></p:commandButton>
 				</p:panelGrid>
 			</p:panel>
 		</h:form>

@@ -6,9 +6,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
+import controle.Util.JPAUtil;
+import controle.Util.JpaDAO;
 import modelo.dominio.Cliente;
 
-public class ClienteDAO {
+public class ClienteDAO extends JpaDAO<Cliente>{
 	
 	private EntityManager manager = null;
 			

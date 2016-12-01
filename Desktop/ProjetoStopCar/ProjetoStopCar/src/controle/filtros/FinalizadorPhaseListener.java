@@ -4,7 +4,7 @@ import javax.faces.event.PhaseEvent;
 import javax.faces.event.PhaseId;
 import javax.faces.event.PhaseListener;
 
-import modelo.dao.JPAUtil;
+import controle.Util.JPAUtil;
 
 @SuppressWarnings("serial")
 public class FinalizadorPhaseListener implements PhaseListener
