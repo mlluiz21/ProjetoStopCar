@@ -11,26 +11,27 @@
 	<ui:define name="titulo">Cadastro de Cliente</ui:define>
 
 	<ui:define name="conteudo">
+	<p:messages id="messages" showDetail="true" autoUpdate="true"></p:messages>
 		<h:form>
 			<p:panel header="Cadastro de Clientes" style="width: 450px">
 				<p:panelGrid columns="2">
 					<p:outputLabel for="cpf" value="CPF:"></p:outputLabel>
-					<p:inputText id="cpf" value="#{ clienteMB.cliente.cpf }"></p:inputText>
+					<p:inputText id="cpf" value="#{ clienteMB.cliente.cpf }" required="true" requiredMessage="#{msgs.msgCpfClie}"></p:inputText>
 
 					<p:outputLabel for="nome" value="Nome:"></p:outputLabel>
-					<p:inputText id="nome" value="#{ clienteMB.cliente.nome }"></p:inputText>
+					<p:inputText id="nome" value="#{ clienteMB.cliente.nome }" required="true" requiredMessage="#{msgs.msgNomeClie}"></p:inputText>
 
 					<p:outputLabel for="placaVeiculo" value="Placa do Veiculo:"></p:outputLabel>
 					<p:inputText id="placaVeiculo"
-						value="#{ clienteMB.cliente.placaVeiculo }"></p:inputText>
+						value="#{ clienteMB.cliente.placaVeiculo }" required="true" requiredMessage="#{msgs.msgPlacaVeiculoClie}"></p:inputText>
 
 					<p:outputLabel for="telefone" value="Telefone:"></p:outputLabel>
-					<p:inputText id="telefone" value="#{ clienteMB.cliente.telefone }"></p:inputText>
+					<p:inputText id="telefone" value="#{ clienteMB.cliente.telefone }" required="true" requiredMessage="#{msgs.msgTelClie}"></p:inputText>
 
-					<p:commandButton value="Enviar"
-						action="#{ clienteMB.salvarCliente }"></p:commandButton>
-					<p:commandButton value="Cancelar"
-						action="#{ clienteMB.acaoCancelar }"></p:commandButton>
+					<p:commandButton value="Cadastrar"
+						action="#{ clienteMB.cadastrarCliente }"></p:commandButton>
+					<p:commandButton value="Cancelar" ajax="false" id="btnCancelar"
+						action="#{ clienteMB.acaoCancelar }" immediate="true"></p:commandButton>
 				</p:panelGrid>
 			</p:panel>
 		</h:form>

@@ -11,28 +11,33 @@
 	<ui:define name="titulo">Cadastro de Fornecedores</ui:define>
 
 	<ui:define name="conteudo">
+		<p:messages id="messages" showDetail="true" autoUpdate="true" />
 		<h:form>
 			<p:panel header="Cadastro de Fornecedores" style="width: 450px">
 				<p:panelGrid columns="2">
 					<p:outputLabel for="cnpj" value="CNPJ:"></p:outputLabel>
-					<p:inputText id="cnpj" value="#{ fornecedorMB.fornecedor.cnpj }"></p:inputText>
+					<p:inputText id="cnpj" value="#{ fornecedorMB.fornecedor.cnpj }"
+						required="true" requiredMessage="#{msgs.msgCnpjFor}"></p:inputText>
 
 					<p:outputLabel for="razaoSocial" value="Razão Social:"></p:outputLabel>
 					<p:inputText id="razaoSocial"
-						value="#{ fornecedorMB.fornecedor.razaoSocial }"></p:inputText>
+						value="#{ fornecedorMB.fornecedor.razaoSocial }" required="true"
+						requiredMessage="#{msgs.msgRaSocialFor}"></p:inputText>
 
 					<p:outputLabel for="cidade" value="Cidade:"></p:outputLabel>
 					<p:inputText id="cidade"
-						value="#{ fornecedorMB.fornecedor.cidade }"></p:inputText>
+						value="#{ fornecedorMB.fornecedor.cidade }" required="true"
+						requiredMessage="#{msgs.msgCidadejFor}"></p:inputText>
 
 					<p:outputLabel for="telefone" value="Telefone:"></p:outputLabel>
 					<p:inputText id="telefone"
-						value="#{ fornecedorMB.fornecedor.telefone }"></p:inputText>
+						value="#{ fornecedorMB.fornecedor.telefone }" required="true"
+						requiredMessage="#{msgs.msgTelFor}"></p:inputText>
 
-					<p:commandButton value="Enviar"
-						action="#{ fornecedorMB.salvarFornecedor }"></p:commandButton>
-					<p:commandButton value="Cancelar"
-						action="#{ fornecedorMB.acaoCancelar }"></p:commandButton>
+					<p:commandButton value="Cadastrar"
+						action="#{fornecedorMB.cadastrarFornecedor}"></p:commandButton>
+					<p:commandButton value="Cancelar" ajax="false" id="btnCancelar"
+						action="#{ fornecedorMB.acaoCancelar }" immediate="true"></p:commandButton>
 				</p:panelGrid>
 			</p:panel>
 		</h:form>

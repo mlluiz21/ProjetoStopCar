@@ -9,89 +9,102 @@ import controle.Util.JSFUtil;
 import modelo.dao.FornecedorDAO;
 import modelo.dominio.Fornecedor;
 
-@ManagedBean(name="fornecedorMB")
+@ManagedBean(name = "fornecedorMB")
 @RequestScoped
 public class FornecedorMB {
-	
-	
+
 	Fornecedor fornecedor = new Fornecedor();
 	FornecedorDAO fornecedordao = new FornecedorDAO();
-	
+
 	private List<Fornecedor> ListaFornecedores = null;
-	
+
+	public List<Fornecedor> getListaFornecedor() {
+
+		if (this.ListaFornecedores == null) {
+			this.ListaFornecedores = this.fornecedordao.lerTodos();
+		}
+		return ListaFornecedores;
+	}
+
 	public Fornecedor getFornecedor() {
 		return fornecedor;
 	}
 
-
 	public void setFornecedor(Fornecedor fornecedor) {
 		this.fornecedor = fornecedor;
-	}
-	
-	public List<Fornecedor> getListaFornecedor() {
-		
-		if(this.ListaFornecedores == null){
-			this.ListaFornecedores = this.fornecedordao.lerTodos();
-		}
-		return ListaFornecedores;
 	}
 
 	public void setListaFornecedor(List<Fornecedor> listaFornecedor) {
 		this.ListaFornecedores = listaFornecedor;
 	}
 	
-	
-	//ACESSAR P핯INA COM A LISTA DE TODOS OS FORNECEDORES.
-	public String acaoListar() {
-		
-		return "listarFornecedor.jsf";
-	}
-	
-	//ABRIR EDI플O DE CADASTRO DE FORNECEDOR.
-	public String acaoAbrir() {
-					
-		return "fornecedor.jsf";
+	public void setFornecedorDAO(FornecedorDAO fornecedordao){
+		this.fornecedordao = fornecedordao;
 	}
 
-	//SALVAR CADASTRO DE FORNECEDOR ********************************. 
+	// ACESSAR P핯INA COM A LISTA DE TODOS OS FORNECEDORES***********.
+	public String cadastrarFornecedor() {
+		
+		fornecedor.getCnpj();
+		fornecedor.getRazaoSocial();
+		fornecedor.getTelefone();
+		fornecedor.getCidade();
+		fornecedor.getTelefone();
+		
+		fornecedordao.salvar(this.fornecedor);
+
+		return "fornecedorEditar.jsf";
+	}//**************************************************************
+
+	// ABRIR EDI플O DE CADASTRO DE FORNECEDOR************************.
+	public String alterarFornecedor() {
+		Long codFornecedor = JSFUtil.getParametroLong("codFornecedor");
+		Fornecedor alterarfornecedor = this.fornecedordao.lerPorId(codFornecedor);
+		this.setFornecedor(alterarfornecedor);
+		this.fornecedordao.salvar(alterarfornecedor);
+
+		return "editarProdutos.jsf";
+	}//**************************************************************
+
+	// SALVAR CADASTRO DE FORNECEDOR ********************************.
 	public String salvarFornecedor() {
-		
-		if ((this.getFornecedor().getCod() != null) && (this.getFornecedor().getCod().longValue() == 0))
+
+		if ((this.getFornecedor().getCod() != null)
+				&& (this.getFornecedor().getCod().longValue() == 0))
 			this.getFornecedor().setCod(null);
-		
+
 		this.fornecedordao.salvar(this.getFornecedor());
 		this.fornecedor = null;
 		this.setFornecedor(new Fornecedor());
-		
+
 		return "paginaHome.jsf";
-	} //**********************************************************
-	
-	
-	public String novoFornecedor()
-	{
+	} // **********************************************************
+
+	public String novoFornecedor() {
 		this.setFornecedor(new Fornecedor());
-		
+
 		return "fornecedorEditar.jsf";
 	}
 
-	//CANCELAR A플O DE CADASTRO
-	public String acaoCancelar()
-	{
+	// CANCELAR A플O DE CADASTRO
+	public String acaoCancelar() {
+		
+		this.setFornecedor(new Fornecedor());
 		return "paginaHome.jsf";
 	}
 
-	//EXCLUIR FORNECEDOR **********************************************
-	public String excluirFornecedor()
-	{
+	// EXCLUIR FORNECEDOR **********************************************
+	public String excluirFornecedor() {
 		long codFornecedor = JSFUtil.getParametroLong("codFornecedor");
-		Fornecedor fornecedorBanco = this.fornecedordao.lerPorCodigo(codFornecedor);
+		Fornecedor fornecedorBanco = this.fornecedordao
+				.lerPorCodigo(codFornecedor);
 		this.fornecedordao.excluir(fornecedorBanco);
 
 		this.setFornecedor(new Fornecedor());
 		this.fornecedor = null;
 
 		return "paginaHome.jsf";
-		
-	} //*************************************************************
-	
+
+	} // *************************************************************
+
 }
