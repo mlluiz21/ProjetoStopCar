@@ -16,77 +16,66 @@
 	<ui:define name="titulo">Lista de Clientes</ui:define>
 
 	<ui:define name="conteudoCenter">
-		<h:form id="form">
-			<h:inputHidden id="codCliente" value="#{clienteMB.cliente.codCliente}" />
-			<p:dataTable id="lista" var="item"
-				value="#{clienteMB.cliente}">
+		<h:inputHidden id="codCliente" value="#{clienteMB.cliente.codCliente}" />
+		<p:dataTable id="lista" var="item" value="#{clienteMB.cliente}">
 
-				<h:outputText value="testando tag" />
+			<h:outputText value="testando tag" />
+			<f:facet name="header">
+				<h:outputText value="#{msgs.campoTop1}" />
+			</f:facet>
+			<p:column>
 				<f:facet name="header">
-					<h:outputText value="#{msgs.campoTop1}" />
+					<h:outputText value="Código" />
 				</f:facet>
-				<p:column>
-					<f:facet name="header">
-						<h:outputText value="ID" />
-					</f:facet>
-					<h:outputText value="#{item.id}" />
-				</p:column>
-				<p:column>
-					<f:facet name="header">
-						<h:outputText value="#{msgs.nomeLista}" />
-					</f:facet>
-					<h:outputText value="#{item.nomeProduto}" />
-				</p:column>
+				<h:outputText value="#{item.codCliente}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgs.nomeLista}" />
+				</f:facet>
+				<h:outputText value="#{item.nome}" />
+			</p:column>
 
-				<p:column>
-					<f:facet name="header">
-						<h:outputText value="#{msgs.marcaLista}" />
-					</f:facet>
-					<h:outputText value="#{item.marcaProduto}" />
-				</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgs.placaVeiculoLista}" />
+				</f:facet>
+				<h:outputText value="#{item.placaVeiculo}" />
+			</p:column>
 
-				<p:column>
-					<f:facet name="header">
-						<h:outputText value="#{msgs.precoLista}" />
-					</f:facet>
-					<h:outputText value="#{item.precoProduto}" />
-				</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgs.telefoneLista}" />
+				</f:facet>
+				<h:outputText value="#{item.telefone}" />
+			</p:column>
 
-				<p:column>
-					<f:facet name="header">
-						<h:outputText value="#{msgs.acoesLista}" />
-					</f:facet>
-					<h:panelGroup column="2">
-						<p:commandButton ajax="false" type="push" value="#{msgs.btnAlterar}"
-							action="#{clienteMB.alterarCliente}" immediate="true"
-							image="ui-icon-pencil">
-							<f:param value="#{item.id}" name="itemId" />
-						</p:commandButton>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgs.acoesLista}" />
+				</f:facet>
+				<h:panelGroup column="2">
+					<p:commandButton ajax="false" type="push"
+						value="#{msgs.btnAlterar}" action="#{clienteMB.alterarCliente}"
+						immediate="true" image="ui-icon-pencil">
+						<f:param value="#{item.id}" name="itemId" />
+					</p:commandButton>
 
-						<p:commandButton ajax="false" type="push" value="#{msgs.btnExcluir}"
-							imediate="true" image="ui-icon-close"
-							action="#{clienteMB.excluirCliente}">
-							<f:param value="#{item.id}" name="itemId" />
-						</p:commandButton>
+					<p:commandButton ajax="false" type="push"
+						value="#{msgs.btnExcluir}" imediate="true" image="ui-icon-close"
+						action="#{clienteMB.excluirCliente}">
+						<f:param value="#{item.id}" name="itemId" />
+					</p:commandButton>
 
 
-					</h:panelGroup>
-				</p:column>
-				
-				
-			</p:dataTable>
-		</h:form>
-		
-		
-		<h:form>		
-			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade" >
-							<p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes">
-							
-							</p:commandButton>
-							<p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no"/>
-				</p:confirmDialog>
-		</h:form>
-		
+				</h:panelGroup>
+			</p:column>
+
+
+		</p:dataTable>
+
+
+
 	</ui:define>
 
 
