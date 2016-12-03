@@ -16,14 +16,18 @@ public class FornecedorMB {
 	Fornecedor fornecedor = new Fornecedor();
 	FornecedorDAO fornecedordao = new FornecedorDAO();
 
-	private List<Fornecedor> ListaFornecedores = null;
+	private List<Fornecedor> listaFornecedores = null;
 
 	public List<Fornecedor> getListaFornecedor() {
 
-		if (this.ListaFornecedores == null) {
-			this.ListaFornecedores = this.fornecedordao.lerTodos();
+		if (this.listaFornecedores == null) {
+			this.listaFornecedores = this.fornecedordao.lerTodos();
 		}
-		return ListaFornecedores;
+		return listaFornecedores;
+	}
+	
+	public void totalFornecedores(List<Fornecedor> lista){
+		
 	}
 
 	public Fornecedor getFornecedor() {
@@ -35,7 +39,7 @@ public class FornecedorMB {
 	}
 
 	public void setListaFornecedor(List<Fornecedor> listaFornecedor) {
-		this.ListaFornecedores = listaFornecedor;
+		this.listaFornecedores = listaFornecedor;
 	}
 	
 	public void setFornecedorDAO(FornecedorDAO fornecedordao){
